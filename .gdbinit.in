@@ -1,0 +1,5 @@
+dir @RSRC@/include:@RSRC@/include/R_ext
+define CHAR
+	set $val = ((char *) (((SEXPREC_ALIGN *) ($arg0)) + 1) )
+	print $val
+end

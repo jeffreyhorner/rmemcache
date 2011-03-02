@@ -1,0 +1,9 @@
+Package: rmemcache
+Type: Package
+Title: R memcache client
+Version: 1.0
+Date: 2006-02-10
+Author: Jeffrey Horner
+Maintainer: Jeffrey Horner<jeff.horner@vanderbilt.edu>
+Description: An R memcache client
+License: BSD

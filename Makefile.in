@@ -1,0 +1,17 @@
+R=@R@
+MEMCACHED=@MEMCACHED@
+
+test: ./Rlib
+	$(R) CMD INSTALL -l ./Rlib rmemcache
+	R_LIBS=./Rlib $(R) --no-save
+
+debug: ./Rlib
+	$(R) CMD INSTALL -l ./Rlib rmemcache
+	R_LIBS=./Rlib $(R) -d gdb --no-save
+
+./Rlib:
+	mkdir ./Rlib
+clean:
+	rm -rf ./Rlib rmemcache/src/*.o rmemcache/src/*.so
+distclean: clean
+	rm Makefile .gdb_history .gdbinit
