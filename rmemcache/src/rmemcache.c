@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <setjmp.h>
+#include <errno.h>
 
 #include <R.h>
 #include <Rinternals.h>
@@ -123,7 +124,7 @@ static int populate_srvlist(mc_con **p_mcon,SEXP srvlist){
 	 */
 	nservers = LENGTH(srvlist);
 	for (i = 0; i < nservers; i++){
-		colon = strchr(CHAR(VECTOR_ELT(srvlist,i)),':');
+		colon = strchr(CHAR(STRING_PTR(srvlist)[i]),':');
 		if (colon == NULL){
 			warning("rmemcache: server and port must be separated by a ':'");
 			return FALSE ;
@@ -372,7 +373,7 @@ static mc_buf *init_store_buf(const char *cmd, const char *key,
 
 	newbuf->count = protbuflen;
 
-	sprintf( (char *)newbuf->buf, "%s %s %d %d ", cmd, key, exptime);
+	sprintf( (char *)newbuf->buf, "%s %s %d %d ", cmd, key, flags, exptime);
 
 	return newbuf;
 }
