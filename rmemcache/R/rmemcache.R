@@ -30,9 +30,9 @@ mcGet <- function(mcon,key){
 #	    on.exit(.Call("mc_destroy_iobufs",mcon,PACKAGE="rmemcache"))
 		.Call("mc_get",mcon,key,PACKAGE="rmemcache")
 }
-mcDelete <- function(mcon,key,exptime=0){
+mcDelete <- function(mcon,key,noReply=FALSE){
 #	    on.exit(.Call("mc_destroy_iobufs",mcon,PACKAGE="rmemcache"))
-		.Call("mc_delete",mcon,key,exptime,PACKAGE="rmemcache")
+		.Call("mc_delete",mcon,key,noReply,PACKAGE="rmemcache")
 }
 mcIncr <- function(mcon,key,byvalue){
 #	    on.exit(.Call("mc_destroy_iobufs",mcon,PACKAGE="rmemcache"))
